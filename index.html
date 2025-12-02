@@ -322,39 +322,133 @@
     }
 
     // ----- LocalStorage autosave -----
-    const STORAGE_KEY = "md-editor-content";
+    // ----- LocalStorage autosave -----
+  const STORAGE_KEY = "md-editor-content";
 
-    (function initContent() {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        editor.value = saved;
-      } else {
-        editor.value = `# Welcome to the Markdown Previewer
+  (function initContent() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      editor.value = saved;
+    } else {
+      editor.value = `# Welcome to the Markdown Previewer
+
+This is a lightweight, browser-based **Markdown playground**.
 
 - Live **GitHub-flavored** Markdown
 - Tables, task lists, and more
 - \`highlight.js\` syntax highlighting
+- Dark/Light themes
+- Export to **HTML** and **PDF**
 
-## Code example
+Edit the text on the left to see the preview here.
 
+---
+
+## Quick Markdown Syntax Guide
+
+You can use these examples directly in the previewer.
+
+### Headings
+
+\`\`\`markdown
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+\`\`\`
+
+### Emphasis
+
+\`\`\`markdown
+*Italic text* or _Italic text_
+**Bold text** or __Bold text__
+***Bold and italic*** or ___Bold and italic___
+\`\`\`
+
+### Lists
+
+**Unordered list:**
+
+\`\`\`markdown
+- Item 1
+- Item 2
+  - Nested item 2.1
+  - Nested item 2.2
+\`\`\`
+
+**Ordered list:**
+
+\`\`\`markdown
+1. First item
+2. Second item
+3. Third item
+\`\`\`
+
+### Links and Images
+
+\`\`\`markdown
+[Link text](https://example.com)
+
+![Alt text for image](https://via.placeholder.com/150)
+\`\`\`
+
+### Code
+
+**Inline code:**
+
+\`\`\`markdown
+Use the \`code\` syntax for inline code.
+\`\`\`
+
+**Code block:**
+
+\`\`\`markdown
 \`\`\`js
 function hello(name) {
   console.log(\`Hello, \${name}!\`);
 }
 \`\`\`
+\`\`\`
 
-- [x] Task lists supported
-- [ ] Unchecked item
+### Blockquotes
 
-| Column A | Column B |
-|---------:|:--------|
-| right    | left    |
+\`\`\`markdown
+> This is a blockquote.
+> It can span multiple lines.
+\`\`\`
 
-> Edit the text on the left to see the preview here.
+### Tables (GFM)
+
+\`\`\`markdown
+| Column A | Column B | Column C |
+|---------:|:--------:|---------|
+| right    | center   | left    |
+| 1        | 2        | 3       |
+\`\`\`
+
+### Task Lists (GFM)
+
+\`\`\`markdown
+- [x] Completed task
+- [ ] Incomplete task
+- [ ] Another item
+\`\`\`
+
+---
+
+## Try it out
+
+1. Replace this text with your own notes or documentation.
+2. Use the toolbar to:
+   - Toggle **Dark/Light** mode
+   - **Open** local \`.md\` files
+   - **Save** your content as \`.md\`
+   - **Export HTML** or **PDF\`
+3. Your work is automatically **saved in this browser** using localStorage.
 `;
-      }
-      render();
-    })();
+    }
+    render();
+  })();
 
     editor.addEventListener("input", () => {
       localStorage.setItem(STORAGE_KEY, editor.value);
